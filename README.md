@@ -28,4 +28,4 @@ https://github.com/adafruit/Adafruit_BME280_Library
 https://github.com/itead/ITEADLIB_Arduino_Nextion
 
 The Libary ITEADLIB_Arduino_Nextion needs the latest Pull request (29) to Update the RTC-Commands.
-On File "NexUpload.cpp" of this Libary you have to disable line 17 (//#include <SoftwareSerial.h>)
+On File "NexUpload.cpp" of this Libary you have to disable line 17 "(//#include <SoftwareSerial.h>)"
