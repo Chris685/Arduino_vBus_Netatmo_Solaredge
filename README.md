@@ -1,4 +1,3 @@
-@@ -1,41 +0,0 @@
 # Arduino_vBus
 
 <img style="border-width:0" src="https://cloud.githubusercontent.com/assets/15777227/21324662/05cc2a82-c623-11e6-8fe8-fc3cb75cf664.png">
