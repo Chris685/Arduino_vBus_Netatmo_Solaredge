@@ -1,4 +1,3 @@
-
 void UpdateTime() {
   Serial.println("Starting UDP");
   Udp.begin(localPort);
