@@ -1,8 +1,11 @@
 // Initialize Serial port
+
 void initSerial() {
-  Serial.begin(9600);
-  Serial2.begin(9600);
+#ifdef DEBUG_SERIAL_ENABLE
+  Serial.begin(115200);       // DEBUG_SERIAL_ENABLE Kommikation
   while (!Serial) {
   }
   Serial.println("Serielle Schnittstelle initialisiert");
+  Serial.println("");
+#endif
 }
