@@ -1,4 +1,4 @@
-# Arduino_vBus
+# Arduino_vBus_Netatmo_Solaredge
 
 <img style="border-width:0" src="https://cloud.githubusercontent.com/assets/15777227/21324662/05cc2a82-c623-11e6-8fe8-fc3cb75cf664.png">
 
@@ -6,16 +6,17 @@
 I was working to Build up a System, which shows me Time, Temperature and Solar/Heating Datas.
 
 **Hardware:**
-- Arduino Due
-- Arduino WiFi Shield
+- ESP8266
 - Adafruit BME280 Humidity + Barometric Pressure + Temperature Sensor Breakout over IC2
 - Nextion Enhanced 7" Display NX8048K070_011R 
 - Resol DL2
+- Solaredge with enabled ModbusTCP
+- Netatmo
 
-**Function Time:**
+**Function NTP:**
 Nextion Enhanced is running with an RTC Clock. The Clock will be synced with NTP at startup.
 
-**Function Temperature:**
+**Function Temperature / BME280:**
 Temperature is pushed over IC2 every 30 seconds from the BME280 to the Arduino
 
 **Function Resol vBus :**
@@ -24,14 +25,33 @@ The Communication is established over HTTP with the Resol Datenlogger DL2. The D
 **Function Display:**
 The Display has an own HMI. It gots only the Signals over UART from the Arduino DUE (Serial2).
 
+**Function OTA:**
+The Controller can now be Updated over the Air. Just use Webbrowser to Upload Binary Sketch.
+
+**Function SolarEdge:**
+Getting Datas from Solaregdge Inverter to visualize current Power and Consumption.
+
+**Function MQTT:**
+Getting Datas from a MQTT Server. I use that function to read in our actuall available water at the storage.
+
+**Function NETATMO:**
+Getting Datas from Netatmo Weather Station.
+
 **Libarys:**
-- ```#include <SPI.h>```
-- ```#include <Wire.h>```
-- ```#include <WiFi.h>```
-- ```#include <WiFiUdp.h>```
-- ```#include <avr/dtostrf.h>```
-- ```#include <stdlib.h>```
-- ```#include <TimeLib.h>``` https://github.com/PaulStoffregen/Time
+- ```#include <FS.h>```
+- ```#include <LittleFS.h>```
+- ```#include <ESP8266HTTPClient.h>```
+- ```#include <WiFiClientSecureBearSSL.h>```
+- ```#include <ESP8266WebServer.h>```
+- ```#include <ESP8266mDNS.h>```
+- ```#include <ESP8266HTTPUpdateServer.h>```
+- ```#include <ModbusIP_ESP8266.h>```
+- ```#include <Arduino.h>```
+- ```#include "Adafruit_MQTT.h"```
+- ```#include "Adafruit_MQTT_Client.h"```
+- ```#include <simpleDSTadjust.h>```
+- ```#include <WiFiClientSecure.h>```
+- ```#include <time.h>```
 - ```#include <ArduinoJson.h>``` https://github.com/bblanchon/ArduinoJson
 - ```#include <Adafruit_Sensor.h>``` https://github.com/adafruit/Adafruit_Sensor
 - ```#include <Adafruit_BME280.h>``` https://github.com/adafruit/Adafruit_BME280_Library
