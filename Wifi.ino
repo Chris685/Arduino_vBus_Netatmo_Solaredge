@@ -1,25 +1,35 @@
 void initWifi() {
   delay (300);
-  if (WiFi.status() == WL_NO_SHIELD){
-  Serial.println("Kann kein WiFi Shield finden!");
-    // don't continue:
-    while (true);
+  //SSID von Nextion
+  char cNexSSID [20];
+  memset(cNexSSID, 0, sizeof(cNexSSID));
+  NexSSID.getText(cNexSSID, sizeof(cNexSSID));
+  //Passwort von Nextion
+  char cNexpass [20];
+  memset(cNexpass, 0, sizeof(cNexpass));
+  Nexpass.getText(cNexpass, sizeof(cNexpass));
+#ifdef DEBUG_WIFI
+  Serial.print("Verbinde zu Netzwerk: ");
+  Serial.print(cNexSSID);
+#endif
+
+  WiFi.mode(WIFI_STA);
+  IPAddress ip(192, 168, 1, 27);
+  IPAddress gateway(192, 168, 1, 1);
+  IPAddress subnet(255, 255, 255, 0);
+  IPAddress dns(192, 168, 1, 1);
+  WiFi.config(ip, dns, gateway, subnet);
+  WiFi.begin(cNexSSID, cNexpass);
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+#ifdef DEBUG_WIFI
+    Serial.print(".");
+#endif
   }
-  while (status != WL_CONNECTED) {
-    //SSID von Nextion
-    char cNexSSID [20];
-    memset(cNexSSID, 0, sizeof(cNexSSID));
-    NexSSID.getText(cNexSSID,sizeof(cNexSSID));
-    //Passwort von Nextion
-    char cNexpass [20];
-    memset(cNexpass, 0, sizeof(cNexpass));
-    Nexpass.getText(cNexpass,sizeof(cNexpass));
-    Serial.print("Verbinde zu Netzwerk: ");
-    Serial.println(cNexSSID);
-    status = WiFi.begin(cNexSSID, cNexpass);
-    delay(2000);
-    }
-  Serial.println("Verbunden mit Netzwerk");
+
+#ifdef DEBUG_WIFI
+  Serial.println(" Verbunden mit Netzwerk \n");
+#endif
+
 }
-
-
