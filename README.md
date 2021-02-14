@@ -40,8 +40,7 @@ Getting Datas from a MQTT Server. I use that function to read in our actuall ava
 Getting Datas from Netatmo Weather Station.
 
 **Libarys:**
-- ```#include <FS.h>```
-- ```#include <LittleFS.h>```
+- ```#include <LittleFS.h>``` Storing the Access Token for Netatmo
 - ```#include <ESP8266HTTPClient.h>```
 - ```#include <WiFiClientSecureBearSSL.h>```
 - ```#include <ESP8266WebServer.h>```
